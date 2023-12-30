@@ -75,56 +75,27 @@
 
    
     <script>
-      $(function() {
-          var availableTags = [];
-
+        $(function () {
           $.ajax({
-              method: "GET",
-              url: "/product-list",
-              dataType: "json", // Specify the expected data type as JSON
-              success: function(response) {
-                  if (Array.isArray(response)) {
-                      console.log(response);
-                      availableTags = response;
-                      startAutoComplete(availableTags);
-                  }
-              },
-              error: function() {
-                  console.log("Error fetching product list");
-              }
+            method: "GET",
+            url: "/product-list",
+            dataType: "json", // Assuming the response is JSON
+            success: function (response) {
+              console.log(response);
+              startAutoComplete(response);
+            },
+            error: function (error) {
+              console.error("Error fetching product list:", error);
+            }
           });
-
+      
           function startAutoComplete(availableTags) {
-              $("#search_product").autocomplete({
-                  source: availableTags,
-                  select: function(event, ui) {
-                      // When an item is selected, you can access the selected item's data
-                      var selectedProduct = ui.item;
-                      console.log(selectedProduct); // Log the selected item data
-
-                      // You can also display the selected image and product name on the page
-                      $("#selected-product-image").attr("src", selectedProduct.image);
-                      $("#selected-product-name").text(selectedProduct.value);
-                  },
-                  focus: function(event, ui) {
-                      // Prevent the default behavior to avoid updating the input field with the item value
-                      event.preventDefault();
-                  },
-                  // Customize the display of items (product names and images)
-                  open: function(event, ui) {
-                      $(".ui-menu").css("z-index", 1001);
-                  }
-              }).data("ui-autocomplete")._renderItem = function(ul, item) {
-                  return $("<li>")
-                      // .append("<div style='height: 40px; width: 200px;'><img src='" + item.image + "' style='height: 100%; width: 30%; margin-right: 10px;'><span>" + item.value + "</span></div>")
-                      .append("<div ><img src='" + item.image +
-                          "' style='height: 40px; width: 40px; margin-right: 10px;'><span>" + item.value +
-                          "</span></div>")
-                      .appendTo(ul);
-              };
+            $("#search_product").autocomplete({
+              source: availableTags
+            });
           }
-      });
-  </script>
+        });
+      </script>
 
   </body>
 </html>
