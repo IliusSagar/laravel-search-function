@@ -24,10 +24,13 @@
 
     <div class="container mt-5">
 
+     
         <div class="row mt-5 mb-5">
             <div class="col-md-4"></div>
             <div class="col-md-4">
-                <form class="d-flex" role="search">
+            
+                  <form method="post" action="{{ route('product.search')}}" class="d-flex" role="search">
+                    @csrf 
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="search_product">
                     <button class="btn btn-outline-success" type="submit">Search</button>
                   </form>
@@ -35,6 +38,7 @@
             </div>
             <div class="col-md-4"></div>
         </div>
+    
     
       
 
