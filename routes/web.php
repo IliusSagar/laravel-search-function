@@ -19,4 +19,4 @@ Route::get('/', function () {
 });
 
 Route::get('/product-list', [ProductController::class, 'ProductListAjax']);
-Route::post('/product/search', [ProductController::class, 'Search'])->name('product.search');
+Route::post('/product/search/{id}', [ProductController::class, 'search'])->name('product.search');

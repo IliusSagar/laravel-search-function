@@ -19,7 +19,6 @@
 
     @php
         $product = DB::table('products')->get();
-        $productfirst = DB::table('products')->first();
     @endphp
 
 
@@ -30,12 +29,11 @@
             <div class="col-md-4"></div>
             <div class="col-md-4">
             
-              <form method="post" action="{{ route('product.search', $productfirst->id) }}" class="d-flex" role="search" id="searchForm">
-                @csrf
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="search_product" name="search_product">
-                <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
-            
+                  <form method="post" action="{{ route('product.search')}}" class="d-flex" role="search">
+                    @csrf 
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="search_product">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                  </form>
             
             </div>
             <div class="col-md-4"></div>

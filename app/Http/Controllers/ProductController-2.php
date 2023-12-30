@@ -22,16 +22,19 @@ class ProductController extends Controller
     return response()->json($data);
 }
 
-public function search(Request $request, $id)
-{
-    $item = $request->input('search_product');
+public function Search(Request $request){
 
-    $product = DB::table('products')
-        ->where('name', 'LIKE', "%$item%")
-        ->get();
+  $item = $request->search;
+  // echo "$item";
 
-    return view('search', compact('product'));
-}
+  $product = DB::table('products')
+              ->where('name','LIKE',"%$item%")
+              ->get();
 
+  return view('search',compact('product'));
 
+  // return view('frontend.pages.product_details',compact('restaurent'));
+
+} // End Method
+      
 }
